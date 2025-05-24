@@ -4,8 +4,8 @@ server:
 spring:
   data:
     mongodb:
-      username: mongo_root_4h8j
-      password: MG#6yH4$pL9sF2@vB3n
+      username: talanta
+      password: talanta
       host: localhost
       port: 27017
       database: customer

@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.talanta</groupId>
-	<artifactId>ecommerce</artifactId>
+	<artifactId>customer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ecommerce</name>
+	<name>customer</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>

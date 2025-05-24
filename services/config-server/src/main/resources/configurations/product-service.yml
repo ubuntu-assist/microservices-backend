@@ -4,9 +4,9 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/products
-    username: pg_admin_7k9m
-    password: PG#9xK2$mN8vQ7wE@5tR
+    url: jdbc:postgresql://localhost:5432/product
+    username: talanta
+    password: talanta
   jpa:
     hibernate:
       ddl-auto: validate
