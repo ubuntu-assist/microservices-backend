@@ -1,10 +1,11 @@
 package com.talanta.ecommerce.product;
 
 import jakarta.validation.constraints.*;
+
 import java.util.UUID;
 
-public record ProductPurchaseRequest(
-        @NotNull(message = "product id is required")
+public record PurchaseRequest(
+        @NotNull(message = "Product ID must not be null")
         UUID productId,
 
         @NotNull(message = "quantity is required")
