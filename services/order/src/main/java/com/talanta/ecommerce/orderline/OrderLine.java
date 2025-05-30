@@ -4,7 +4,6 @@ import com.talanta.ecommerce.order.Order;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.math.BigDecimal;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -22,5 +21,4 @@ public class OrderLine {
     private Order order;
     private UUID productId;
     private double quantity;
-    private BigDecimal price;
 }
