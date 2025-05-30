@@ -10,6 +10,7 @@ import com.talanta.ecommerce.orderline.OrderLineService;
 import com.talanta.ecommerce.product.ProductClient;
 import com.talanta.ecommerce.product.PurchaseRequest;
 import com.talanta.ecommerce.product.PurchaseResponse;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -56,5 +57,18 @@ public class OrderService {
         );
 
         return order.getId();
+    }
+
+    public List<OrderResponse> getAllOrders() {
+        return orderRepository.findAll()
+                .stream()
+                .map(orderMapper::fromOrder)
+                .toList();
+    }
+
+    public OrderResponse getSingleOrder(UUID orderId) {
+        return orderRepository.findById(orderId)
+                .map(orderMapper::fromOrder)
+                .orElseThrow(() -> new EntityNotFoundException("No order found with the provided ID:: %s".formatted(orderId)));
     }
 }

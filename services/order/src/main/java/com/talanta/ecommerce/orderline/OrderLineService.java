@@ -3,6 +3,7 @@ package com.talanta.ecommerce.orderline;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -11,8 +12,14 @@ public class OrderLineService {
     private final OrderLineRepository orderLineRepository;
     private final OrderLineMapper orderLineMapper;
 
-    public UUID saveOrderLine(OrderLineRequest request) {
+    public void saveOrderLine(OrderLineRequest request) {
         OrderLine orderLine = orderLineRepository.save(orderLineMapper.toOrderLine(request));
-        return orderLine.getId();
+    }
+
+    public List<OrderLineResponse> getOrderLinesByOrder(UUID orderId) {
+        return orderLineRepository.findAllByOrderId(orderId)
+                .stream()
+                .map(orderLineMapper::fromOrderLine)
+                .toList();
     }
 }
