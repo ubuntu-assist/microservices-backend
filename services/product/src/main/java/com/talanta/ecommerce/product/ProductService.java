@@ -90,12 +90,6 @@ public class ProductService {
 
         if(request.price() != null && request.price().compareTo(BigDecimal.ZERO) > 0)
             product.setPrice(request.price());
-
-//        if(request.categoryId() != null) {
-//            Category category = categoryRepository.findById(request.categoryId())
-//                    .orElseThrow(() -> new CategoryNotFoundException("No category found with the provided ID:: %s".formatted(request.categoryId())));
-//            product.setCategory(category);
-//        }
     }
 
     public void deleteProduct(UUID productId) {

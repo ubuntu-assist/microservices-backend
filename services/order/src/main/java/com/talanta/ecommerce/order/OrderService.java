@@ -7,6 +7,8 @@ import com.talanta.ecommerce.kafka.OrderConfirmation;
 import com.talanta.ecommerce.kafka.OrderProducer;
 import com.talanta.ecommerce.orderline.OrderLineRequest;
 import com.talanta.ecommerce.orderline.OrderLineService;
+import com.talanta.ecommerce.payment.PaymentClient;
+import com.talanta.ecommerce.payment.PaymentRequest;
 import com.talanta.ecommerce.product.ProductClient;
 import com.talanta.ecommerce.product.PurchaseRequest;
 import com.talanta.ecommerce.product.PurchaseResponse;
@@ -27,6 +29,7 @@ public class OrderService {
     private final ProductClient productClient;
     private final OrderLineService orderLineService;
     private final OrderProducer orderProducer;
+    private final PaymentClient paymentClient;
 
     public UUID createOrder(OrderRequest request) {
         CustomerResponse customer = customerClient.getSingleCustomer(request.customerId())
@@ -45,6 +48,16 @@ public class OrderService {
                     )
             );
         }
+
+        paymentClient.requestOrderPayment(
+                new PaymentRequest(
+                        request.totalAmount(),
+                        request.paymentMethod(),
+                        order.getId(),
+                        order.getReference(),
+                        customer
+                )
+        );
 
         orderProducer.sendOrderConfirmation(
                 new OrderConfirmation(
