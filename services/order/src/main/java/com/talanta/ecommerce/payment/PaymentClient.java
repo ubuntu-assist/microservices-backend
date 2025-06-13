@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @FeignClient(
         name = "payment-service",
-        url = "{application.config.payment-url}"
+        url = "${application.config.payment-url}"
 )
 public interface PaymentClient {
     @PostMapping
